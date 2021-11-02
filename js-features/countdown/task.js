@@ -1,40 +1,36 @@
-let sec = document.getElementById("timer");
-let count = 59;
-let counter = setInterval(timer, 1000);
+let start = 5;
 
-function timer() {
-    count = count - 1;
+let hours = document.getElementById("hours");
+let minutes = document.getElementById("minutes");
+let seconds = document.getElementById("seconds");
 
-    if (count < 0) {
+function getNumber(number) {
+
+    if (number < 10) {
+        number = '0' + number;
+    } else {
+        number = '' + number;
+    }
+    return number;
+};
+
+const timeCount = () => {
+
+    let curentSeconds = start % 60;
+    let countOfMin = (start - curentSeconds) / 60;
+    let curentMinutes = countOfMin % 60;
+    let curentHours = (countOfMin - curentMinutes) / 60;
+
+    hours.textContent = getNumber(curentHours);
+    minutes.textContent = getNumber(curentMinutes);
+    seconds.textContent = getNumber(curentSeconds);
+
+
+    if (start < 0) {
         clearInterval(counter);
         alert("Вы победили в конкурсе!");
-    } else {
-        sec.textContent = count;
     }
-}
+    start--;
+};
 
-
-// document.addEventListener('DOMContentLoaded', () => {
-//     const data = new Date('00:00:00');
-
-//     let hours = document.getElementById("hours");
-//     let minutes = document.getElementById("minutes");
-//     let seconds = document.getElementById("seconds");
-
-//     const timeCount = () => {
-//         let now = new Date();
-//         let result = data - now;
-//         console.log(result);
-
-//         let hoursNumb = Math.floor(result / 1000 / 60 / 60) % 24;
-//         let minutesNumb = Math.floor(result / 1000 / 60) % 60;
-//         let secondsNumb = Math.floor(result / 1000) % 60;
-
-//         hours.textContent = hoursNumb;
-//         minutes.textContent = minutesNumb;
-//         seconds.textContent = secondsNumb;
-//     };
-//     setInterval(timeCount, 1000);
-// });
-
-// не могу разобраться с Data. Вообще не пониаю что делать.
+let counter = setInterval(timeCount, 1000);
