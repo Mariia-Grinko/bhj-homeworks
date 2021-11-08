@@ -1,6 +1,5 @@
 let modalMain = document.getElementById("modal_main");
 let modalSuccess = document.getElementById("modal_success");
-let modal = document.querySelectorAll(".modal");
 let close = document.querySelectorAll('.modal__close');
 let showSuccess = document.querySelector('.show-success');
 
@@ -8,7 +7,7 @@ modalMain.classList.add("modal_active");
 
 for (let i = 0; i < close.length; i++) {
     close[i].onclick = function() {
-        modalMain.classList.remove("modal_active");
+        this.closest('.modal').classList.remove("modal_active");
     }
 };
 

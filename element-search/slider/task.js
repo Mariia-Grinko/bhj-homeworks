@@ -3,7 +3,7 @@ let prev = document.querySelector(".slider__arrow_prev");
 let sliderItems = document.querySelectorAll(".slider__item");
 let dots = document.querySelectorAll(".slider__dot");
 
-let activeSlide = 0;
+// let activeSlide = 0;
 
 
 //сделать слайдер активным добавить класс и точки
@@ -22,6 +22,10 @@ function slideShow(activeSlideNumber) {
 
 next.addEventListener('click', function() {
 
+    let activeSlide = Array.from(sliderItems).findIndex((sliderItem) => {
+        return sliderItem.className.includes('slider__item_active');
+    });
+
     if (activeSlide >= sliderItems.length - 1) {
         activeSlide = 0;
     } else {
@@ -30,6 +34,9 @@ next.addEventListener('click', function() {
     slideShow(activeSlide);
 });
 prev.addEventListener('click', function() {
+    let activeSlide = Array.from(sliderItems).findIndex((sliderItem) => {
+        return sliderItem.className.includes('slider__item_active');
+    });
 
     if (activeSlide <= 0) {
         activeSlide = sliderItems.length - 1;
@@ -41,6 +48,9 @@ prev.addEventListener('click', function() {
 
 for (let i = 0; i < dots.length; i++) {
     dots[i].addEventListener('click', function() {
+
         slideShow(i);
     });
 }
+
+slideShow(0);
