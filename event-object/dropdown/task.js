@@ -9,9 +9,9 @@ dropdownValue.addEventListener('click', function() {
 for (let dropdownItem of dropdownItems) {
     let dropdownLink = dropdownItem.querySelector('.dropdown__link');
 
-    dropdownLink.addEventListener('click', function() {
+    dropdownLink.addEventListener('click', function(e) {
+        e.preventDefault();
         dropdownValue.textContent = dropdownLink.textContent;
         dropdownList.classList.toggle('dropdown__list_active');
-        return false;
     });
 }
